@@ -1,3 +1,52 @@
 body {
   margin: 0;
 }
+
+@import "variables";
+
+.calendar {
+  padding: 20px;
+  max-width: calc(#{$sizeDay} * 7 + #{$gap} * 7);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  div {
+    width: $sizeDay;
+    height: $sizeDay;
+    background-color: #eee;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin-left: $gap;
+    margin-top: $gap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    transition: background-color 0.5s, transform 0.5s;
+  }
+
+  div:hover {
+    background-color: pink;
+    transform: translate(0, -20px);
+  }
+
+  @for $day from 1 through 31 {
+    div:nth-child(#{$day})::after {
+      content: "#{$day}";
+      font-size: 30px;
+      font-family: Arial, sans-serif;
+    }
+  }
+
+  @each $dayWeek, $numberDayWeek in $week {
+    &-#{$dayWeek} {
+      div:first-child {
+        margin-left: calc(
+          #{$numberDayWeek} * #{$sizeDay} + #{$numberDayWeek} * #{$gap}
+        );
+      }
+    }
+  }
+}
