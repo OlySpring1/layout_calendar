@@ -11,6 +11,7 @@ body {
   flex-wrap: wrap;
 
   div {
+    display: flex;
     width: $sizeDay;
     height: $sizeDay;
     background-color: #eee;
@@ -18,7 +19,6 @@ body {
     box-sizing: border-box;
     margin-left: $gap;
     margin-top: $gap;
-    display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -31,11 +31,12 @@ body {
     transform: translate(0, -20px);
   }
 
-  @for $day from 1 through 31 {
-    div:nth-child(#{$day})::after {
-      content: "#{$day}";
+  @for $i from 1 through 31 {
+    div:nth-child(#{$i})::after {
+      content: "#{$i}";
       font-size: 30px;
       font-family: Arial, sans-serif;
+      display: block;
     }
   }
 
@@ -46,6 +47,14 @@ body {
           #{$numberDayWeek} * #{$sizeDay} + #{$numberDayWeek} * #{$gap}
         );
       }
+    }
+  }
+}
+
+@each $day in $month {
+  @for $i from $day+1 through 31 {
+    .calendar-#{$day} div:nth-child(#{$i}) {
+      display: none;
     }
   }
 }
