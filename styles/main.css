@@ -3,14 +3,10 @@ body {
 
 .calendar {
   padding: 20px;
-  max-width: calc(100px * 7 + 1px * 7);
+  width: calc( (100px + 1px) * 7);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
   .calendar div {
